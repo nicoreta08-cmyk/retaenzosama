@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="cargar_lista()">
+    <center>
+        <div id ="login">
+             <form  action="" onsubmit="hacerLogin(event)">
+                 <input id="usr" type="text" placeholder="usuario">
+                 <input id="pass" type="password"placeholder="contraseña">
+                 <input type="submit" value="ingresar">
+            </form> 
+        </div>
+    </center>
+
+    <div id="contenido" style="display: none;">
+       Lista de tareas 
+       <input type="text"  id="tarea">
+       <button onclick="add()">agregar</button>
+       <ol id="tareas">
+       </ol>
+
+    </div>
+
+    <script>
+         var nombre = "reta"
+         var contra = "456"
+         var lista_tareas = ['lavar platos','pasear al perro']
+         var almacenamiento = window.localStorage;
+         
+         function cargar_lista() {
+            for (let index = 0; index < lista_tareas.length; index++) {
+                const element = lista_tareas[index];
+                add(element);
+            }
+         }
+         function hacerLogin(event){
+            event.preventDefault();
+         if (usr.value == nombre && pass.value == contra)  {           
+             //mostrar y ocultar
+                login.style.display = 'none';
+                contenido.style.display = 'block';
+         }
+         }
+         function add(elemento){
+            console.log(tarea.value);
+            var tarea_temp = elemento || tarea.value;
+            if (tarea.value != ''){
+                lista_tareas.push(tarea_temp);
+            }
+            var tareita = document.createElement("div");
+            var tareitacheck = document.createElement("input");
+            tareitacheck.setAttribute("type","checkbox");
+
+  var newContent = document.createTextNode(tarea_temp);
+  tareita.appendChild(tareitacheck);
+  tareita.appendChild(newContent);
+  tareas.appendChild(tareita);
+         }
+        
+    </script>
+</body>
+</html>
